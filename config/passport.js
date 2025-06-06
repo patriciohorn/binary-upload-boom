@@ -1,5 +1,6 @@
-const { Strategy: LocalStrategy } = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User');
+const mongoose = require('mongoose');
 
 // Verify function that passport will call on login
 
@@ -47,7 +48,7 @@ module.exports = function (passport) {
     )
   );
 
-  // stores user's ID in the session after login
+  // setores user's ID in the session after login
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });

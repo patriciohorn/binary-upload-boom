@@ -1,5 +1,5 @@
+const bcrypt = require('bcrypt'); // library to help us hash passwords
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
   userName: {
@@ -13,8 +13,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
 });
 
-// Pasword hash middleware
-// Hash the password before saving a new or updated user
+// Password hash middleware, when creating a user??
 UserSchema.pre('save', async function save(next) {
   const user = this;
 
@@ -26,23 +25,14 @@ UserSchema.pre('save', async function save(next) {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
+
     next();
   } catch (error) {
     return next(error);
   }
 });
 
-// Helper method for validating user's password
-// Checks if typed password matches the stored has during login
-UserSchema.methods.comparePassword = function comparePassword(
-  candidatePassword,
-  cb
-) {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    cb(err, isMatch);
-  });
-};
-// When creating a user I would need to hash the password
+// Helper method for validating user's password.
 UserSchema.methods.comparePassword = async function comparePassword(
   candidatePassword
 ) {
@@ -58,4 +48,6 @@ UserSchema.methods.comparePassword = async function comparePassword(
   }
 };
 
+// To use our schema, we need to convert it into a Model we can work with
+// mongoose.model(modelName, schema)
 module.exports = mongoose.model('User', UserSchema);

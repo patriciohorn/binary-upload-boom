@@ -11,31 +11,67 @@
 </head>
 <body>
   <section class=" mx-auto min-h-screen flex flex-col items-center justify-center">
-    <div class="bg-white rounded-lg p-12 shadow-md  w-fit">
-      <h1 class="mb-6 text-3xl font-bold text-indigo-950  text-center tracking-tight">Create a new account 😉</h1>
+    <div class="bg-white rounded-lg p-12 shadow-md">
 
-      <form class="mb-6 max-w-sm mx-auto" action="" method="POST">
-        <div class="mb-5">
-          <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Your username</label>
-          <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+      <h1 class="mb-6 text-3xl font-bold text-indigo-950  text-center tracking-tight">Create a new account <span>
+          <%= (locals.messages.errors || locals.messages.info) ? '😯' : '😉' %>
+        </span></h1>
+      <% if(locals.messages.errors || locals.messages.info){ %>
+        <div class="flex flex-col gap-2 mb-6 max-w-sm">
+          <% if(locals.messages.info){ %>
+            <% messages.info.forEach(el=> { %>
+              <div role="alert" class="alert alert-warning animate-fade-up">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <span>
+                  <%= el.msg %>
+                </span>
+              </div>
+              <% }) %>
+
+                <% } %>
+                  <% if(locals.messages.errors){ %>
+                    <% messages.errors.forEach((el)=> { %>
+                      <div role="alert" class="alert alert-error animate-fade-up
+">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>
+                          <%= el.msg %>
+                        </span>
+                      </div>
+                      <% }) %>
+
+                        <% } %>
         </div>
-        <div class="mb-5">
-          <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-          <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@gmail.com" required />
-        </div>
-        <div class="mb-5">
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-          <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
-        </div>
-        <div class="mb-5">
-          <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
-        </div>
-        <button type="submit" class="btn btn-secondary btn-lg w-full">Create Account</button>
-      </form>
-      <p class="text-gray-600 text-sm">Already have an account? <a class="text-primary hover:underline hover:primary" href="/login">Login</a></p>
+        <% } %>
+
+
+          <form class="mb-6 max-w-sm mx-auto" action="/signup" method="POST">
+            <div class="mb-5">
+              <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Your username</label>
+              <input type="text" id="username" name="userName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+            </div>
+            <div class="mb-5">
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
+              <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@gmail.com" required />
+            </div>
+            <div class="mb-5">
+              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+              <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+            </div>
+            <div class="mb-5">
+              <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+            </div>
+            <button type="submit" class="btn btn-secondary btn-lg w-full">Create Account</button>
+          </form>
+          <p class="text-gray-600 text-sm">Already have an account? <a class="text-primary hover:underline hover:primary" href="/login">Login</a></p>
 
     </div>
+
   </section>
 </body>
 </html>
