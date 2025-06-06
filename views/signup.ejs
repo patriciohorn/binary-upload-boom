@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/output.css">
+  <title>Binary Upload Boom | Sign up</title>
+</head>
+<body>
+  <section class=" mx-auto min-h-screen flex flex-col items-center justify-center">
+    <div class="bg-white rounded-lg p-12 shadow-md  w-fit">
+      <h1 class="mb-6 text-3xl font-bold text-indigo-950  text-center tracking-tight">Create a new account 😉</h1>
+
+      <form class="mb-6 max-w-sm mx-auto" action="" method="POST">
+        <div class="mb-5">
+          <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Your username</label>
+          <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+        </div>
+        <div class="mb-5">
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
+          <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@gmail.com" required />
+        </div>
+        <div class="mb-5">
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+          <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+        </div>
+        <div class="mb-5">
+          <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+        </div>
+        <button type="submit" class="btn btn-secondary btn-lg w-full">Create Account</button>
+      </form>
+      <p class="text-gray-600 text-sm">Already have an account? <a class="text-primary hover:underline hover:primary" href="/login">Login</a></p>
+
+    </div>
+  </section>
+</body>
+</html>
