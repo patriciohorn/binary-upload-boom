@@ -1,5 +1,32 @@
 <%- include('partials/header') %>
-  <section class=" mx-auto min-h-screen flex flex-col items-center justify-center">
-    <h1 class="text-4xl font-bold">Welcome <%=user%>
-    </h1>
+  <section class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col justify-center py-20 lg:py-28 space-y-8">
+      <h1 class="text-2xl font-bold">Welcome <%= user.charAt(0).toUpperCase() + user.slice(1) %>
+      </h1>
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
+        <aside class="p-8 bg-white rounded-lg">
+          <h2 class="mb-6 text-2xl font-bold text-gray-950">Create a New Post</h2>
+          <form action="/post/createPost" method="POST" enctype="multipart/form-data" data-theme="light">
+            <!-- Title -->
+            <div class="mb-5">
+              <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+              <input type="text" id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+            </div>
+            <!-- Caption -->
+            <div class="mb-5">
+              <label for="caption" class="block mb-2 text-sm font-medium text-gray-900">Caption</label>
+              <textarea id="caption" name="caption" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary focus:border-primary"></textarea>
+            </div>
+            <!-- File uploading -->
+            <div class="mb-5">
+              <label class="block mb-2 text-sm font-medium text-gray-900" for="imgUpload">Upload file</label>
+              <input id="imgUpload" name="file" type="file" class="file-input rounded-lg focus:outline-offset-0 focus:outline-1 focus-visible:outline-1 w-full" required>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-lg w-full">Create Post</button>
+          </form>
+        </aside>
+        <div></div>
+      </div>
+
+    </div>
   </section>

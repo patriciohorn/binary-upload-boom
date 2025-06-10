@@ -9,6 +9,7 @@ const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const mainRoutes = require('./routes/main');
+const postRoutes = require('./routes/post');
 const { passUser } = require('./middleware/user');
 // Tells the app where to find our env variables
 dotenv.config({ path: './config/.env' });
@@ -48,6 +49,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.use('/', mainRoutes);
+app.use('/post', postRoutes);
 
 app.listen(process.env.PORT || 4242, () => {
   console.log(`Server running on port ${process.env.PORT}`);
