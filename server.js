@@ -9,7 +9,7 @@ const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const mainRoutes = require('./routes/main');
-const postRoutes = require('./routes/post');
+const postRoutes = require('./routes/posts');
 const { passUser } = require('./middleware/user');
 // Tells the app where to find our env variables
 dotenv.config({ path: './config/.env' });

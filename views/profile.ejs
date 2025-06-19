@@ -4,6 +4,7 @@
       <h1 class="text-2xl font-bold">Welcome <%= user.charAt(0).toUpperCase() + user.slice(1) %>
       </h1>
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] space-x-12">
+        <!-- Create a new Post -->
         <aside class="self-start p-8 bg-white rounded-lg sticky top-2">
           <h2 class="mb-6 text-2xl font-bold text-gray-950">Create a New Post</h2>
           <form action="/post/createPost" method="POST" enctype="multipart/form-data" data-theme="light">
@@ -25,6 +26,7 @@
             <button type="submit" class="btn btn-secondary btn-lg w-full">Create Post</button>
           </form>
         </aside>
+        <!-- User Post Feed -->
         <section class="grid grid-cols-2 gap-x-8 gap-y-8 items-start">
           <% posts.forEach(post=> { %>
             <!-- Post -->
@@ -33,12 +35,18 @@
                 <img src="<%= post.image %>" alt="Shoes" class="w-full h-full bg-cover" />
               </figure>
               <div class="card-body">
+                <div class="flex justify-start items-center gap-3">
+                  <span class="text-sm font-bold text-gray-950">
+                    <%= user %>
+                  </span>
+                  <p>
+                    <%=post.caption%>
+                  </p>
+
+                </div>
                 <h2 class="card-title">
                   <%=post.title%>
                 </h2>
-                <p>
-                  <%=post.caption%>
-                </p>
               </div>
             </div>
 

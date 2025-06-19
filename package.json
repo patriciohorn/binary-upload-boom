@@ -20,6 +20,7 @@
     "express": "^5.1.0",
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
+    "lucide": "^0.514.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.15.1",
     "morgan": "^1.10.0",

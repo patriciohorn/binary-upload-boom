@@ -2,24 +2,32 @@
 
   <section class="max-w-7xl mx-auto px-6 py-20">
     <ul class="grid grid-cols-3 gap-x-8 gap-y-12">
-
       <% posts.forEach(post=> { %>
-
         <li>
-          <a href="/post/<%= post._id %>" data-theme="light" class=" cursor-pointer card bg-base-100  shadow-sm w-fit">
+          <a href="/post/<%=post._id%>" data-theme="light" class=" cursor-pointer card bg-base-100 shadow-sm">
             <figure class="aspect-[4/3]">
-              <img src="<%= post.image %>" alt="Shoes" class="w-full h-full bg-cover" />
+              <img src="<%=post.image%>" alt="Shoes" class="w-full h-full object-cover" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title">
+              <div class=" inline-block">
+                <div class="mr-2 inline-block">
+                  <span class="inline font-bold">
+                    <%= post.user.userName %>
+                  </span>
+                </div>
+                <span class="inline">
+                  <%= post.caption %>
+                </span>
+              </div>
+
+              <h2 class="card-title py-2">
                 <%=post.title%>
               </h2>
-              <p>
-                <%=post.caption%>
-              </p>
+
             </div>
           </a>
         </li>
         <% }) %>
+
     </ul>
   </section>
