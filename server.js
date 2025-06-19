@@ -8,6 +8,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const methodOverride = require('method-override');
 const mainRoutes = require('./routes/main');
 const postRoutes = require('./routes/posts');
 const { passUser } = require('./middleware/user');
@@ -26,6 +27,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(logger('dev'));
+
+app.use(methodOverride('_method'));
 
 // Setup Sessions - Stored in MongoDB
 app.use(

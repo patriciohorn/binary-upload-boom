@@ -1,6 +1,5 @@
 const Post = require('../models/Post');
 const cloudinary = require('../middleware/cloudinary');
-const User = require('../models/User');
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -48,7 +47,7 @@ module.exports = {
         .sort({ createdAt: 'desc' })
         .populate('user', 'userName')
         .lean();
-      console.log(posts);
+
       res.render('feed.ejs', { posts: posts });
     } catch (error) {
       console.log(error);
@@ -59,11 +58,46 @@ module.exports = {
     try {
       // go to DB
       // Find the post that has the same id as the :id query parameter
-      const post = await Post.findById(req.params.id);
-      // console.log(req.user.id, post.user);
+      const post = await Post.findById(req.params.id).populate(
+        'user',
+        'userName'
+      );
+
       res.render('post.ejs', { post: post, user: req.user });
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  likePost: async (req, res) => {
+    try {
+      // find the post
+      let post = await Post.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $inc: { likes: 1 } }
+      );
+      console.log('Likes +1');
+      res.redirect(`/post/${req.params.id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  deletePost: async (req, res) => {
+    try {
+      // Find post by id
+      let post = await Post.findById({ _id: req.params.id });
+      console.log(post.cloudinaryId);
+      // Delete image from cloudinary
+      await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Remove from database
+      await Post.deleteOne({ _id: req.params.id });
+
+      console.log('Deleted Post');
+      res.redirect('/profile');
+    } catch (err) {
+      console.log(err);
+      res.redirect('/profile');
     }
   },
 };

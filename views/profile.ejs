@@ -27,30 +27,36 @@
           </form>
         </aside>
         <!-- User Post Feed -->
-        <section class="grid grid-cols-2 gap-x-8 gap-y-8 items-start">
-          <% posts.forEach(post=> { %>
-            <!-- Post -->
-            <div data-theme="light" class="card bg-base-100  shadow-sm w-fit">
-              <figure class="aspect-[4/3]">
-                <img src="<%= post.image %>" alt="Shoes" class="w-full h-full bg-cover" />
-              </figure>
-              <div class="card-body">
-                <div class="flex justify-start items-center gap-3">
-                  <span class="text-sm font-bold text-gray-950">
-                    <%= user %>
-                  </span>
-                  <p>
-                    <%=post.caption%>
-                  </p>
+        <section>
+          <ul class="grid grid-cols-2 gap-x-8 gap-y-8 items-start">
+            <!-- Posts -->
+            <% posts.forEach(post=> { %>
+              <li>
+                <a href="/post/<%=post._id%>" data-theme="light" class=" cursor-pointer card bg-base-100 shadow-sm">
+                  <figure class="aspect-[4/3]">
+                    <img src="<%=post.image%>" alt="Shoes" class="w-full h-full object-cover" />
+                  </figure>
+                  <div class="card-body">
+                    <div class=" inline-block">
+                      <div class="mr-2 inline-block">
+                        <span class="inline font-bold">
+                          <%= user %>
+                        </span>
+                      </div>
+                      <span class="inline">
+                        <%= post.caption %>
+                      </span>
+                    </div>
 
-                </div>
-                <h2 class="card-title">
-                  <%=post.title%>
-                </h2>
-              </div>
-            </div>
+                    <h2 class="card-title py-2">
+                      <%=post.title%>
+                    </h2>
 
-            <% }) %>
+                  </div>
+                </a>
+              </li>
+              <% }) %>
+          </ul>
 
         </section>
         <div></div>
