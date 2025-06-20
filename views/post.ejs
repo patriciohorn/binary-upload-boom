@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
-  <section class="max-w-md mx-auto px-6">
-    <div class="py-16 sm:py-20">
+  <section class="max-w-md mx-auto px-6 py-12 sm:py-16">
+    <section class="mb-6">
       <div data-theme="light" class="card bg-base-100  shadow-sm relative">
         <figure class="aspect-[4/3]">
           <img src="<%= post.image %>" alt="" class="w-full h-full bg-cover" />
@@ -48,5 +48,31 @@
             </div>
 
       </div>
-    </div>
+    </section>
+
+    <!-- Comments -->
+    <section data-theme="light" class="rounded-lg p-6 flex flex-col space-y-8">
+      <form action="/comment/createComment/<%=post.id%>" method="POST" class="flex items-end gap-1">
+        <div>
+          <label for="comment" class="font-semibold text-sm">Add a Comment</label>
+          <input type="text" id="comment" class="input w-full" name="comment" />
+        </div>
+        <button class="btn btn-secondary" type="submit">Submit</button>
+      </form>
+
+      <ul class="flex flex-col space-y-2">
+        <% comments.forEach(comment=> { %>
+          <li class="flex flex-col">
+            <span>
+              <%=comment.comment%>
+            </span>
+            <span class="text-sm text-gray-400">
+              <%=comment.createdAt.toLocaleDateString()%>
+            </span>
+          </li>
+          <% }) %>
+      </ul>
+    </section>
+
+
   </section>

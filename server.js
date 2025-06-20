@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
 const mainRoutes = require('./routes/main');
 const postRoutes = require('./routes/posts');
+const commentRoutes = require('./routes/comments');
 const { passUser } = require('./middleware/user');
 // Tells the app where to find our env variables
 dotenv.config({ path: './config/.env' });
@@ -53,6 +54,7 @@ app.use(flash());
 
 app.use('/', mainRoutes);
 app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
 
 app.listen(process.env.PORT || 4242, () => {
   console.log(`Server running on port ${process.env.PORT}`);
